@@ -16,10 +16,11 @@ server.get('/', (req, res) => {
 server.get('/api/persons', (req, res) => {
     Person.getAll()
         .then(persons => {
+            console.table(persons);
             res.status(200).json(persons)
         })
-        .catch(error => {
-            res.status(500).json(error);
+        .catch(({ message }) => {
+            res.status(500).json(message);
         });
 });
 
